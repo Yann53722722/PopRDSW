@@ -16,7 +16,6 @@ import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,6 +41,7 @@ public class gmsData {
         this.fileList = new ArrayList<String>();
         try{            
             BufferedReader greader = new BufferedReader(new FileReader(infile));
+           
             String line;
             while((line = greader.readLine()) != null){
                 line = line.trim();
@@ -88,9 +88,9 @@ public class gmsData {
         for(int i = 0; i < this.fileList.size(); i++){
             BufferedReader in = null;
             try{
-                in = openFile(new File(this.fileList.get(i)));
-                String line = in.readLine();
-                String[] segs = line.split("\t");
+                //in = openFile(new File(this.fileList.get(i)));
+                //String line = in.readLine();
+                String[] segs = this.fileList.get(i).split("\t");
                 // Just a blank entry to keep the chromosome field for the next method
                 this.windows.put(segs[0], new gmsMapChr());
                 in.close();
